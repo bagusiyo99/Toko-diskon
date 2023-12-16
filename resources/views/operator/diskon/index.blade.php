@@ -15,7 +15,7 @@
                                 <td>Harga Barang</td>
                                 <td>Diskon Barang</td>
                                 <td>Harga Diskon</td>
-
+                                <td>Status</td>
                                 <td>Gambar</td>
                                 <td>Action</td>
                             </tr>
@@ -30,6 +30,8 @@
                                     <td>{{ formatRupiah($item->harga_barang - ($item->harga_barang * $item->diskon) / 100) }}
                                     </td> <!-- Menampilkan harga setelah diskon -->
                                     </td>
+                                    <td><span class="badge  {{ $item->status == 'aktif' ? 'bg-primary' : 'bg-danger' }}">
+                                            {{ $item->status }}</span></td>
 
                                     <td>
                                         @if ($item->gambar)

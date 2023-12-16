@@ -10,7 +10,7 @@
             <div class="row g-0 gx-5 align-items-end">
                 <div class="col-lg-6">
                     <div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                        <h1 class="display-5 mb-3">Produk Diskon</h1>
+                        <h1 class="display-5 mb-3">Produk Lengkap</h1>
                         <p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor
                             duo.</p>
                     </div>
@@ -44,20 +44,8 @@
             </div>
 
             <div class="row g-4">
-                @if ($diskon->isEmpty())
-                    <div class="col-12 text-center mt-5">
-                        <div class="alert alert-danger d-flex align-items-center" role="alert">
-                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
-                                aria-label="Danger:">
-                                <use xlink:href="#exclamation-triangle-fill" />
-                            </svg>
-                            <div>
-                                Tidak ada produk yang ditemukan.
-                            </div>
-                        </div>
-                    </div>
-                @else
-                    @foreach ($diskon as $item)
+                @foreach ($diskon as $item)
+                    @if ($item->diskon == 0)
                         <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                             <div class="product-item">
                                 <div class="position-relative bg-light overflow-hidden">
@@ -96,7 +84,20 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @endif
+                @endforeach
+                @if ($diskon->where('diskon', '=', 0)->isEmpty())
+                    <div class="col-12 text-center mt-5">
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                aria-label="Danger:">
+                                <use xlink:href="#exclamation-triangle-fill" />
+                            </svg>
+                            <div>
+                                Tidak ada produk lengkap yang ditemukan.
+                            </div>
+                        </div>
+                    </div>
                 @endif
             </div>
 

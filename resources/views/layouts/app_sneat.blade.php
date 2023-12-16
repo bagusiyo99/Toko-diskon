@@ -195,12 +195,6 @@
                         </a>
                     </li>
 
-                    <li class="menu-item {{ \Route::is('transaksi.*') ? 'active' : '' }}">
-                        <a href="{{ route('transaksi.index') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-collection"></i>
-                            <div data-i18n="Basic">Data transaksi</div>
-                        </a>
-                    </li>
 
 
 

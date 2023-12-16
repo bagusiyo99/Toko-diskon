@@ -19,6 +19,8 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->integer('diskon');
             $table->enum('kategori', ['Ruangan', 'Material', 'Dekorasi'])->nullable();
+            $table->enum('status', ['aktif', 'tidak aktif'])->default('aktif');
+
             $table->timestamps();
         });
     }

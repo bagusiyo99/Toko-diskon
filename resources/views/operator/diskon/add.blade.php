@@ -75,6 +75,14 @@
                         </select>
                     </div>
 
+                    <div class="form-group mt-3">
+                        <label for="status">Status Produk</label>
+                        <input type="checkbox" name="status" id="status"
+                            {{ isset($diskon) && $diskon->status === 'aktif' ? 'checked' : '' }}>
+                        <label for="status">Aktif</label>
+                    </div>
+
+
 
                     <div class="form-group mt-3">
                         <label for="diskon">Diskon Barang %</label>
@@ -115,6 +123,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             const formattedHargaInput = document.getElementById('formatted_harga_barang');
             const hargaInput = document.getElementById('harga_barang');
+            const statusCheckbox = document.getElementById('status');
+            const diskonInput = document.getElementsByName('diskon')[0];
 
             formattedHargaInput.addEventListener('input', function() {
                 let harga = this.value.replace(/\D/g, ''); // Ambil nilai tanpa karakter non-digit
@@ -134,6 +144,20 @@
                 }
                 formattedHargaInput.value = `Rp ${harga}`; // Tampilkan nilai dengan format Rupiah
             }
+
+            // Atur input diskon berdasarkan status produk saat halaman dimuat
+            diskonInput.disabled = !statusCheckbox.checked; // Nonaktifkan input diskon jika tidak aktif
+            if (!statusCheckbox.checked) {
+                diskonInput.value = 0; // Set nilai diskon menjadi 0 jika tidak aktif
+            }
+
+            // Perbarui input diskon saat status produk berubah
+            statusCheckbox.addEventListener('change', function() {
+                diskonInput.disabled = !this.checked; // Nonaktifkan input diskon jika tidak aktif
+                if (!this.checked) {
+                    diskonInput.value = 0; // Set nilai diskon menjadi 0 jika tidak aktif
+                }
+            });
         });
     </script>
 @endsection

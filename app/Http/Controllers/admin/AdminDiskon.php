@@ -1,9 +1,10 @@
 <?php
-namespace App\Http\Controllers\Admin;
+/// dua komponen jika di buat folder
+namespace App\Http\Controllers\admin;
+use App\Http\Controllers\Controller;
 
 use App\Models\Diskon;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
@@ -31,21 +32,20 @@ class AdminDiskon extends Controller
     }
 
 
-        public function store(Request $request)
+   public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'nama_barang' => 'required',
-            'diskon' => 'required|numeric|min:0|max:100', // Validasi diskon
+            'diskon' => 'required_if:status,aktif|numeric|min:0|max:100',
             'harga_barang' => 'required|numeric|min:0',
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:15048',
             'kategori' => 'required',
-            'deskripsi' => 'required ',
+            'deskripsi' => 'required',
         ], [
             'nama_barang.required' => 'Nama diskon wajib diisi.',
             'diskon.required' => 'Diskon wajib diisi.',
-            'kategori.required' => 'kategori wajib diisi.',
-            'deskripsi.required' => 'deskripsi wajib diisi.',
-
+            'kategori.required' => 'Kategori wajib diisi.',
+            'deskripsi.required' => 'Deskripsi wajib diisi.',
             'diskon.numeric' => 'Diskon harus berupa angka.',
             'diskon.min' => 'Diskon minimal :min.',
             'diskon.max' => 'Diskon maksimal :max.',
@@ -65,16 +65,19 @@ class AdminDiskon extends Controller
                 ->with('error', 'Data wajib diisi');
         }
 
-
-
         $data = $request->all();
 
         $harga_barang = $data['harga_barang'];
-        $diskon = $data['diskon'];
         $kategori = $data['kategori'];
         $deskripsi = $data['deskripsi'];
 
-        $harga_setelah_diskon = $harga_barang - ($harga_barang * $diskon) / 100;
+        // Pemeriksaan untuk memastikan 'diskon' ada dalam array $data
+        $diskon = $request->has('diskon') ? $data['diskon'] : 0;
+
+        $status = $request->has('status') ? 'aktif' : 'tidak aktif';
+
+
+        $harga_setelah_diskon = $status === 'aktif' ? $harga_barang - ($harga_barang * $diskon) / 100 : $harga_barang;
 
         if ($request->hasFile('gambar')) {
             $gambar = $request->file('gambar');
@@ -87,10 +90,11 @@ class AdminDiskon extends Controller
 
         Diskon::create([
             'nama_barang' => $data['nama_barang'],
-            'diskon' => $diskon,
             'kategori' => $kategori,
             'deskripsi' => $deskripsi,
-            
+            'status' => $status,
+            'diskon' => $diskon,
+
             'harga_barang' => $harga_barang,
             'gambar' => $data['gambar'],
         ]);
@@ -116,13 +120,12 @@ class AdminDiskon extends Controller
 {
     $validator = Validator::make($request->all(), [
         'nama_barang' => 'required',
-        'diskon' => 'required|numeric|min:0|max:100', // Validasi diskon
+        'diskon' => 'required_if:status,aktif|numeric|min:0|max:100',
         'harga_barang' => 'required|numeric|min:0',
         'gambar' => 'image|mimes:jpeg,png,jpg,gif|max:15048',
         'kategori' => 'required',
         'deskripsi' => 'required ',
     ], [
-
         'nama_barang.required' => 'Nama diskon wajib diisi.',
         'kategori.required' => 'kategori wajib diisi.',
         'deskripsi.required' => 'deskripsi wajib diisi.',
@@ -138,6 +141,7 @@ class AdminDiskon extends Controller
         'gambar.max' => 'Ukuran gambar maksimal :max kilobytes.',
     ]);
 
+
    if ($validator->fails()) {
         return redirect()->back()
             ->withErrors($validator)
@@ -146,14 +150,17 @@ class AdminDiskon extends Controller
     }
 
     $diskon = Diskon::find($id);
-    $data = $request->all();
 
-    $harga_barang = $data['harga_barang'];
-    $diskonValue = $data['diskon']; // Renamed variable to prevent conflicts
-    $kategori = $data['kategori'];
-    $deskripsi = $data['deskripsi'];
+        $data = $request->all();
+        $harga_barang = $data['harga_barang'];
+        $kategori = $data['kategori'];
+        $deskripsi = $data['deskripsi'];
 
-    $harga_setelah_diskon = $harga_barang - ($harga_barang * $diskonValue) / 100;
+    $status = $request->has('status') ? 'aktif' : 'tidak aktif';
+    $diskonValue = $status === 'aktif' ? $request->input('diskon') : 0; // Set diskon menjadi 0 jika status tidak aktif
+
+
+        $harga_setelah_diskon = $status === 'aktif' ? $harga_barang - ($harga_barang * $diskonValue) / 100 : $harga_barang;
 
     if ($request->hasFile('gambar')) {
         if ($diskon->gambar != null) {
@@ -172,11 +179,13 @@ class AdminDiskon extends Controller
 
     $diskon->update([
         'nama_barang' => $data['nama_barang'],
-        'diskon' => $diskonValue, // Changed variable name to avoid conflict
+        'diskon' => $diskonValue, // Menggunakan variable yang sudah direname
         'kategori' => $kategori,
         'deskripsi' => $deskripsi,
         'harga_barang' => $harga_barang,
         'gambar' => $data['gambar'],
+        'status' => $status,
+
     ]);
 
     Alert::success('Sukses', 'Data berhasil diupdate');

@@ -9,25 +9,26 @@ use Illuminate\Http\Request;
 
 class HomeDiskon extends Controller
 {
-    public function index(Request $request)
-    {
-        $kategori = $request->input('kategori');
+public function index(Request $request)
+{
+    $kategori = $request->input('kategori');
 
-        $diskonQuery = Diskon::query();
+    $diskonQuery = Diskon::query();
 
-        if ($kategori && $kategori !== 'all') {
-            $diskonQuery->where('kategori', $kategori);
-        }
-
-        $diskon = $diskonQuery->get();
-
-        $data = [
-            'diskon' => $diskon,
-            'content' => 'home.sale.index' // Sesuaikan dengan path view yang benar
-        ];
-
-        return view('home.sale.index', $data);
+    if ($kategori && $kategori !== 'all') {
+        $diskonQuery->where('kategori', $kategori);
     }
+
+    $diskon = $diskonQuery->get();
+
+    $data = [
+        'diskon' => $diskon,
+        'content' => $diskon->isEmpty() ? 'home.sale.lengkap' : 'home.sale.index' // Sesuaikan dengan path view yang benar
+    ];
+
+    return view('home.sale.index', $data);
+}
+
 
     public function diskon($id)
     {

@@ -58,6 +58,11 @@ Route::get('/produk/{id}', [HomeProduk::class, 'produk'])->name('furnitur.detail
 Route::get('/diskon', [HomeDiskon::class, 'index'])->name('sale.index');
 Route::get('/diskon/{id}', [HomeDiskon::class, 'diskon'])->name('sale.detail');
 
+Route::get('/produk-lengkap', function () {
+    return view('home.sale.lengkap');
+})->name('produk.lengkap');
+
+
 
 
 Route::get('/pemesanan', [HomePemesanan::class, 'index'])->name('pemesanan.index');
@@ -139,11 +144,9 @@ Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function
     Route::resource('/jasa', AdminJasa::class);
     Route::resource('/banner', AdminBanner::class);
     Route::resource('/blog', AdminBlog::class);
-    Route::resource('/barang', AdminBarang::class);
     Route::resource('/produk', AdminProduk::class);
     Route::resource('/diskon', AdminDiskon::class);
 
-    Route::resource('/transaksi', AdminTransaksi::class);
 
     Route::resource('/portofolio', AdminPortofolio::class);
 
