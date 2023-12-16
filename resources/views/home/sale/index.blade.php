@@ -68,8 +68,9 @@
                                 </div>
                                 <div class="d-flex border-top">
                                     <small class="w-50 text-center border-end py-2">
-                                        <a class="text-body" href=""><i
+                                        <a class="text-body" href="{{ route('sale.detail', ['id' => $item->id]) }}"><i
                                                 class="fa fa-eye text-primary me-2"></i>Detail</a>
+
                                     </small>
                                     <small class="w-50 text-center py-2">
                                         <a class="text-body" href=""><i

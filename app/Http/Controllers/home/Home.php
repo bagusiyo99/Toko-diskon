@@ -21,7 +21,7 @@ class Home extends Controller
         'blog' => Blog::paginate(4),
         // 'informasi' => Informasi::paginate(4),
         'banner' => Banner::get(),
-        'diskon' => Diskon::latest()->take(4)->get(),
+        'diskon' => Diskon::where('diskon', '>', 0)->latest()->take(4)->get(),
 
         
 

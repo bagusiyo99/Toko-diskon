@@ -56,11 +56,11 @@ Route::get('/produk', [HomeProduk::class, 'index'])->name('furnitur.index');
 Route::get('/produk/{id}', [HomeProduk::class, 'produk'])->name('furnitur.detail');
 
 Route::get('/diskon', [HomeDiskon::class, 'index'])->name('sale.index');
-Route::get('/diskon/{id}', [HomeDiskon::class, 'diskon'])->name('sale.detail');
+Route::get('/diskon/detail/{id}', [HomeDiskon::class, 'diskon'])->name('sale.detail');
+Route::get('/diskon/lengkap', [HomeDiskon::class, 'lengkap'])->name('sale.lengkap');
 
-Route::get('/sale/lengkap', function () {
-    return view('home.sale.lengkap');
-})->name('sale.lengkap');
+
+
 
 
 

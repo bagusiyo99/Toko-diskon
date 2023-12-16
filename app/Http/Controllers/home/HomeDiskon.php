@@ -32,6 +32,27 @@ class HomeDiskon extends Controller
         return view('home.sale.index', compact('diskon'));
     }
 
+            public function lengkap(Request $request)
+    {
+        $kategori = $request->input('kategori');
+
+        // Misalkan Anda mendapatkan data produk dengan diskon 0 atau tidak aktif dari model atau dari suatu tempat
+        $diskonQuery = Diskon::query();
+
+        if ($kategori && $kategori !== 'all') {
+            $diskonQuery->where('kategori', $kategori);
+        }
+
+        $diskonLengkap = $diskonQuery->where(function ($query) {
+            $query->where('diskon', 0)
+                ->orWhere('status', 'tidak aktif');
+        })->get();
+
+        return view('home.sale.lengkap', compact('diskonLengkap'));
+    }
+
+
+
     public function diskon($id)
     {
         $diskon = Diskon::find($id);
