@@ -28,6 +28,31 @@
                         @enderror
                     </div>
 
+
+                    <div class="form-group mt-3">
+                        <label for="kategori">Kategori</label>
+                        <select name="kategori" id="kategori" class="form-control">
+                            <option value="Ruangan"
+                                {{ isset($produk) && $produk->kategori == 'Ruangan' ? 'selected' : '' }}>Ruangan</option>
+                            <option value="Material"
+                                {{ isset($produk) && $produk->kategori == 'Material' ? 'selected' : '' }}>Material
+                            </option>
+                            <option value="Dekorasi"
+                                {{ isset($produk) && $produk->kategori == 'Dekorasi' ? 'selected' : '' }}>Dekorasi
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="">Deskripsi</label>
+                        <textarea id="tiny" name="deskripsi"class="form-control" cols="30" rows="10">{{ isset($produk) ? $produk->deskripsi : old('deskripsi') }} </textarea>
+                        @error('deskripsi')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
                     <div class="form-group mt-3">
                         <label for="harga_produk">Harga produk</label>
                         <div class="input-group">

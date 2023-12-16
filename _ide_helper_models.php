@@ -38,25 +38,9 @@ namespace App\Models{
 /**
  * App\Models\Barang
  *
- * @property int $id
- * @property string $nama_barang
- * @property int $jumlah_barang
- * @property string $harga_barang
- * @property string|null $gambar
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Transaksi> $transaksis
- * @property-read int|null $transaksis_count
  * @method static \Illuminate\Database\Eloquent\Builder|Barang newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Barang newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Barang query()
- * @method static \Illuminate\Database\Eloquent\Builder|Barang whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Barang whereGambar($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Barang whereHargaBarang($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Barang whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Barang whereJumlahBarang($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Barang whereNamaBarang($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Barang whereUpdatedAt($value)
  */
 	class Barang extends \Eloquent {}
 }
@@ -85,6 +69,18 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Blog whereUpdatedAt($value)
  */
 	class Blog extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Diskon
+ *
+ * @method static \Database\Factories\DiskonFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Diskon newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Diskon newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Diskon query()
+ */
+	class Diskon extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -166,34 +162,10 @@ namespace App\Models{
 /**
  * App\Models\Pengaturan
  *
- * @property int $id
- * @property string $judul
- * @property string $deskripsi
- * @property string $visi
- * @property string $misi
- * @property string $alamat
- * @property string $hp
- * @property string|null $logo
- * @property string|null $gambar
- * @property string|null $vidio
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Database\Factories\PengaturanFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Pengaturan newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Pengaturan newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Pengaturan query()
- * @method static \Illuminate\Database\Eloquent\Builder|Pengaturan whereAlamat($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pengaturan whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pengaturan whereDeskripsi($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pengaturan whereGambar($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pengaturan whereHp($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pengaturan whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pengaturan whereJudul($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pengaturan whereLogo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pengaturan whereMisi($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pengaturan whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pengaturan whereVidio($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pengaturan whereVisi($value)
  */
 	class Pengaturan extends \Eloquent {}
 }
@@ -224,23 +196,24 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Produk
+ *
+ * @method static \Database\Factories\ProdukFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Produk newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Produk newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Produk query()
+ */
+	class Produk extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Transaksi
  *
- * @property int $id
- * @property int $barang_id
- * @property int $jumlah_terjual
- * @property string $total_harga
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Barang|null $barang
  * @method static \Illuminate\Database\Eloquent\Builder|Transaksi newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Transaksi newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Transaksi query()
- * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereBarangId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereJumlahTerjual($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereTotalHarga($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Transaksi whereUpdatedAt($value)
  */
 	class Transaksi extends \Eloquent {}
 }

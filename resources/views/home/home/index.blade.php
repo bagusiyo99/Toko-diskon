@@ -70,35 +70,43 @@
         <div class="container">
             <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s"
                 style="max-width: 500px;">
-                <h1 class="display-5 mb-3">Produk Diskon</h1>
-                <p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+                <h1 class="display-5 mb-3">Kategori Produk </h1>
+                <p> Beberapa kategori yang berada di perusahaan kami.</p>
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="bg-white text-center h-100 p-4 p-xl-5">
-                        <img class="img-fluid mb-4" src="img/icon-1.png" alt="">
-                        <h4 class="mb-3">Natural Process</h4>
-                        <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed
-                            vero dolor duo.</p>
-                        <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Read More</a>
+                        {{-- <img class="img-fluid mb-4" src="img/icon-1.png" alt=""> --}}
+                        <h4 class="mb-3">Ruangan</h4>
+                        <p class="mb-4">Temukan furnitur yang cocok untuk setiap ruang di rumah Anda, mulai dari ruang
+                            tamu yang ramah hingga kamar tidur yang nyaman.
+                            .</p>
+                        <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Lihat
+                            Selengkapnya</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="bg-white text-center h-100 p-4 p-xl-5">
-                        <img class="img-fluid mb-4" src="img/icon-2.png" alt="">
-                        <h4 class="mb-3">Organic Products</h4>
-                        <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed
-                            vero dolor duo.</p>
-                        <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Read More</a>
+                        {{-- <img class="img-fluid mb-4" src="img/icon-2.png" alt=""> --}}
+                        <h4 class="mb-3">Material</h4>
+                        <p class="mb-4">Kami menawarkan koleksi furniture yang dibuat dengan bahan berkualitas tinggi,
+                            mulai dari kayu solid yang tahan lama hingga material modern yang inovatif.
+
+                        </p>
+                        <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Lihat
+                            Selengkapnya</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="bg-white text-center h-100 p-4 p-xl-5">
-                        <img class="img-fluid mb-4" src="img/icon-3.png" alt="">
-                        <h4 class="mb-3">Biologically Safe</h4>
-                        <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed
-                            vero dolor duo.</p>
-                        <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Read More</a>
+                        {{-- <img class="img-fluid mb-4" src="img/icon-3.png" alt=""> --}}
+                        <h4 class="mb-3">Dekorasi</h4>
+                        <p class="mb-4">Tambahkan sentuhan dekoratif yang memukau dengan pilihan furnitur kami yang dapat
+                            meningkatkan keindahan dan gaya dalam setiap sudut ruangan.
+
+                        </p>
+                        <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Lihat
+                            Selengkapnya</a>
                     </div>
                 </div>
             </div>
@@ -115,8 +123,15 @@
                     <div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s"
                         style="max-width: 500px;">
                         <h1 class="display-5 mb-3">Produk Diskon</h1>
-                        <p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor
-                            duo.</p>
+                        <p>Tingkatkan keindahan rumah Anda dengan penawaran istimewa! Temukan koleksi produk diskon kami
+                            yang menawarkan nilai luar biasa untuk setiap furnitur yang Anda butuhkan.
+
+
+
+
+
+
+                        </p>
                     </div>
                 </div>
                 {{-- <div class="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
@@ -139,7 +154,7 @@
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane fade show p-0 active">
                     <div class="row g-4">
-                        @foreach ($barang as $item)
+                        @foreach ($diskon as $item)
                             <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="product-item">
                                     <div class="position-relative bg-light overflow-hidden">
@@ -152,8 +167,7 @@
                                             {{ $item->diskon }}%</div>
                                     </div>
                                     <div class="text-center p-4">
-                                        <a class="d-block h5 mb-2 text-uppercase"
-                                            href="">{!! Str::limit($item->nama_barang, 40) !!}</a>
+                                        <a class="d-block h5 mb-2 text-uppercase" href="">{!! Str::limit($item->nama_barang, 40) !!}</a>
                                         <span
                                             class="text-primary me-1">{{ formatRupiah($item->harga_barang - ($item->harga_barang * $item->diskon) / 100) }}</span>
                                         <span
@@ -161,8 +175,8 @@
                                     </div>
                                     <div class="d-flex border-top">
                                         <small class="w-50 text-center border-end py-2">
-                                            <a class="text-body" href=""><i
-                                                    class="fa fa-eye text-primary me-2"></i> Detail</a>
+                                            <a class="text-body" href=""><i class="fa fa-eye text-primary me-2"></i>
+                                                Detail</a>
                                         </small>
                                         <small class="w-50 text-center py-2">
                                             <a class="text-body" href=""><i
@@ -176,7 +190,7 @@
 
 
                         <div class="col-12 text-center">
-                            <a class="btn btn-primary rounded-pill py-3 px-5" href="">Lihat Selengkapnya</a>
+                            <a class="btn btn-primary rounded-pill py-3 px-5" href="/diskon">Lihat Selengkapnya</a>
                         </div>
                     </div>
                 </div>
@@ -188,89 +202,26 @@
 
 
 
-    <div class="container my-5">
-        <div class="row">
-            <div class="col-lg-8">
-                <article class="blog-post">
-                    <h1 class="blog-post-title">Manfaat Buah Apel untuk Kesehatan</h1>
-                    <p class="blog-post-meta text-muted">Tanggal Posting: 13 Desember 2023 / Kategori: Kesehatan</p>
-                    <img src="/{{ $item->gambar }}" class="img-fluid mb-4 rounded" alt="Gambar Apel">
-                    <p class="blog-post-content">Buah apel adalah salah satu buah yang kaya akan serat, vitamin, dan
-                        antioksidan. Manfaat utama buah apel antara lain:</p>
-                    <ul class="blog-post-content">
-                        <li>Meningkatkan kesehatan jantung</li>
-                        <li>Menurunkan risiko diabetes</li>
-                        <li>Membantu sistem pencernaan</li>
-                        <li>Menjaga berat badan yang sehat</li>
-                        <li>Meningkatkan kekebalan tubuh</li>
-                    </ul>
-                    <p class="blog-post-content">Apel juga mengandung vitamin C yang membantu tubuh dalam menyerap zat
-                        besi.</p>
-                    <blockquote class="blockquote">
-                        <p class="blog-post-content">"Satu apel sehari dapat menjauhkan dokter dari Anda."</p>
-                        <footer class="blockquote-footer">Kata Bijak</footer>
-                    </blockquote>
-                    <!-- Bagian komentar -->
-                    <h3 class="mt-5">Komentar</h3>
-                    <div class="comment-section">
-                        <!-- Form komentar -->
-                        <form>
-                            <div class="mb-3">
-                                <label for="nama" class="form-label">Nama</label>
-                                <input type="text" class="form-control" id="nama" placeholder="Masukkan nama">
-                            </div>
-                            <div class="mb-3">
-                                <label for="komentar" class="form-label">Komentar Anda</label>
-                                <textarea class="form-control" id="komentar" rows="3" placeholder="Tulis komentar"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Kirim Komentar</button>
-                        </form>
-                    </div>
-                </article>
-            </div>
-            <!-- Sidebar -->
-            <div class="col-lg-4">
-                <aside class="sidebar">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h5 class="card-title">Artikel Terkait</h5>
-                            <!-- Daftar artikel terkait -->
-                            <ul class="list-group">
-                                <li class="list-group-item">Manfaat Buah Jeruk</li>
-                                <li class="list-group-item">Resep Makanan Sehat dari Buah-buahan</li>
-                                <li class="list-group-item">Tips Menyimpan Buah agar Tahan Lama</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Tombol sosial media (Opsional) -->
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Bagikan Artikel</h5>
-                            <div class="social-icons">
-                                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                                <!-- Tambahkan ikon sosial media lainnya jika diperlukan -->
-                            </div>
-                        </div>
-                    </div>
-                </aside>
-            </div>
-        </div>
-    </div>
+
 
     <!-- Firm Visit Start -->
     <div class="container-fluid bg-primary bg-icon mt-5 py-6">
         <div class="container">
             <div class="row g-5 align-items-center">
                 <div class="col-md-7 wow fadeIn" data-wow-delay="0.1s">
-                    <h1 class="display-5 text-white mb-3">Visit Our Firm</h1>
-                    <p class="text-white mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam
-                        amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna
-                        dolore erat amet. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos.</p>
+                    <h1 class="display-5 text-white mb-3">Kunjungi Perusahaan Kami</h1>
+                    <p class="text-white mb-0">Jelajahi dunia furnitur yang penuh inspirasi! Kunjungi perusahaan kami dan
+                        temukan koleksi lengkap yang akan membawa kehangatan dan keindahan ke setiap ruangan di rumah Anda.
+
+
+
+
+
+
+                    </p>
                 </div>
                 <div class="col-md-5 text-md-end wow fadeIn" data-wow-delay="0.5s">
-                    <a class="btn btn-lg btn-secondary rounded-pill py-3 px-5" href="">Visit Now</a>
+                    <a class="btn btn-lg btn-secondary rounded-pill py-3 px-5" href=""> Kunjungi</a>
                 </div>
             </div>
         </div>
@@ -283,55 +234,53 @@
         <div class="container">
             <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s"
                 style="max-width: 500px;">
-                <h1 class="display-5 mb-3">Customer Review</h1>
-                <p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+                <h1 class="display-5 mb-3">Kata Pelanggan</h1>
+                <p>Saya sangat terkesan dengan desain minimalis namun elegan dari meja makan yang saya beli di sini.
+                    Material yang digunakan terasa kuat dan tahan lama. Produk yang sangat direkomendasikan!</p>
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                 <div class="testimonial-item position-relative bg-white p-5 mt-4">
                     <i class="fa fa-quote-left fa-3x text-primary position-absolute top-0 start-0 mt-n4 ms-5"></i>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et
-                        eos. Clita erat ipsum et lorem et sit.</p>
+                    <p class="mb-4">Kualitasnya tidak diragukan lagi, sangat nyaman dan sesuai dengan yang diharapkan.
+                        Sangat puas dengan pembelian saya.</p>
                     <div class="d-flex align-items-center">
                         <img class="flex-shrink-0 rounded-circle" src="img/testimonial-1.jpg" alt="">
                         <div class="ms-3">
-                            <h5 class="mb-1">Client Name</h5>
-                            <span>Profession</span>
+                            <h5 class="mb-1">Sarah </h5>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-item position-relative bg-white p-5 mt-4">
                     <i class="fa fa-quote-left fa-3x text-primary position-absolute top-0 start-0 mt-n4 ms-5"></i>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et
-                        eos. Clita erat ipsum et lorem et sit.</p>
+                    <p class="mb-4">Desain yang unik dan inovatif! Saya senang menemukan furnitur di sini yang sesuai
+                        dengan selera saya. Kualitasnya melebihi ekspektasi saya dan memberikan sentuhan istimewa pada
+                        ruangan saya.</p>
                     <div class="d-flex align-items-center">
                         <img class="flex-shrink-0 rounded-circle" src="img/testimonial-2.jpg" alt="">
                         <div class="ms-3">
-                            <h5 class="mb-1">Client Name</h5>
-                            <span>Profession</span>
+                            <h5 class="mb-1">Anton</h5>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-item position-relative bg-white p-5 mt-4">
                     <i class="fa fa-quote-left fa-3x text-primary position-absolute top-0 start-0 mt-n4 ms-5"></i>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et
-                        eos. Clita erat ipsum et lorem et sit.</p>
+                    <p class="mb-4">Pengiriman tepat waktu, furnitur dikemas dengan baik, dan hasil akhirnya sangat
+                        memuaskan. Layanan pelanggan juga responsif dan membantu..</p>
                     <div class="d-flex align-items-center">
                         <img class="flex-shrink-0 rounded-circle" src="img/testimonial-3.jpg" alt="">
                         <div class="ms-3">
-                            <h5 class="mb-1">Client Name</h5>
-                            <span>Profession</span>
+                            <h5 class="mb-1">Johnson</h5>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-item position-relative bg-white p-5 mt-4">
                     <i class="fa fa-quote-left fa-3x text-primary position-absolute top-0 start-0 mt-n4 ms-5"></i>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et
-                        eos. Clita erat ipsum et lorem et sit.</p>
+                    <p class="mb-4">Harganya sangat bersaing untuk kualitas yang diberikan. Saya senang dengan pilihan
+                        yang ada dan pasti akan kembali lagiet sit.</p>
                     <div class="d-flex align-items-center">
                         <img class="flex-shrink-0 rounded-circle" src="img/testimonial-4.jpg" alt="">
                         <div class="ms-3">
-                            <h5 class="mb-1">Client Name</h5>
-                            <span>Profession</span>
+                            <h5 class="mb-1">Susi</h5>
                         </div>
                     </div>
                 </div>
@@ -346,8 +295,10 @@
         <div class="container">
             <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s"
                 style="max-width: 500px;">
-                <h1 class="display-5 mb-3">Latest Blog</h1>
-                <p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+                <h1 class="display-5 mb-3">Informasi Terbaru</h1>
+                <p>Ini dia berita terkini! Perusahaan kami telah merilis koleksi terbaru furnitur yang menghadirkan desain
+                    inovatif dan tren terkini. Jelajahi pilihan terbaru kami yang menggabungkan fungsionalitas, gaya, dan
+                    kualitas untuk mempercantik setiap ruang di rumah Anda.</p>
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">

@@ -32,13 +32,16 @@
                             </div>
 
                             <div class="mt-3">
-                                <label for="foto">Logo (Format: jpg, jpeg, png, Ukuran Maks: 3MB)</label>
+                                <label for="foto">banner (Format: jpg, jpeg, png, Ukuran Maks: 3MB)</label>
                                 <input type="file" name="foto" class="form-control">
                                 @error('foto')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                                 <img src="/{{ settings()->get('foto') }}" width="300px">
                             </div>
+
+
+
 
                             <button type="submit" class="btn btn-primary mt-5">UPDATE</button>
                         </div>

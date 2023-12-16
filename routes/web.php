@@ -14,6 +14,7 @@ use App\Http\Controllers\admin\AdminKomen;
 
 use App\Http\Controllers\admin\AdminBanner;
 use App\Http\Controllers\admin\AdminBarang;
+use App\Http\Controllers\Admin\AdminDiskon;
 use App\Http\Controllers\home\HomePemesanan;
 use App\Http\Controllers\home\HomePortofolio;
 use App\Http\Controllers\admin\AdminPemesanan;
@@ -24,6 +25,7 @@ use App\Http\Controllers\Admin\AdminProduk;
 use App\Http\Controllers\admin\AdminTransaksi;
 use App\Http\Controllers\home\HomeBlogController;
 use App\Http\Controllers\admin\BerandaOperatorController;
+use App\Http\Controllers\home\HomeDiskon;
 use App\Http\Controllers\home\HomeProduk;
 use App\Http\Controllers\SettingController;
 
@@ -50,8 +52,11 @@ Route::get('/jasa', [HomeJasa::class, 'index'])->name('jasa.index');
 Route::get('/jasa/{id}', [HomeJasa::class, 'detail'])->name('jasa.detail');
 
 
-Route::get('/produk', [HomeProduk::class, 'index'])->name('produk.index');
-Route::get('/produk/{id}', [HomeProduk::class, 'produk'])->name('produk.detail');
+Route::get('/produk', [HomeProduk::class, 'index'])->name('furnitur.index');
+Route::get('/produk/{id}', [HomeProduk::class, 'produk'])->name('furnitur.detail');
+
+Route::get('/diskon', [HomeDiskon::class, 'index'])->name('sale.index');
+Route::get('/diskon/{id}', [HomeDiskon::class, 'diskon'])->name('sale.detail');
 
 
 
@@ -136,6 +141,7 @@ Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function
     Route::resource('/blog', AdminBlog::class);
     Route::resource('/barang', AdminBarang::class);
     Route::resource('/produk', AdminProduk::class);
+    Route::resource('/diskon', AdminDiskon::class);
 
     Route::resource('/transaksi', AdminTransaksi::class);
 

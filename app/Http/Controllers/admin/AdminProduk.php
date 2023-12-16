@@ -51,6 +51,8 @@ class AdminProduk extends Controller
             'nama_produk' => 'required',
             'harga_produk' => 'required ',
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:5048',
+            'deskripsi' => 'required ',
+            'kategori' => 'required',
         ]);
 
         // upload gambar
@@ -111,6 +113,9 @@ class AdminProduk extends Controller
          $data = $request -> validate ([
             'nama_produk' => 'required',
             'harga_produk' => 'required ',
+            'kategori' => 'required',
+            'deskripsi' => 'required ',
+
 
         ]);
 

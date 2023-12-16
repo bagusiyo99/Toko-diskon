@@ -34,7 +34,6 @@
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
 
-
 </head>
 
 <body>
@@ -49,7 +48,7 @@
     <div class="container-fluid fixed-top px-0 wow fadeIn bg-light" data-wow-delay="0.1s">
         <div class="top-bar row gx-0 align-items-center d-none d-lg-flex">
             <div class="col-lg-6 px-5 text-start">
-                <small><i class="fa fa-map-marker-alt me-2"></i>123 Street, New York, USA</small>
+                <small><i class="fa fa-map-marker-alt me-2"></i>123 bandar lampung, lampung</small>
                 <small class="ms-4"><i class="fa fa-envelope me-2"></i>info@example.com</small>
             </div>
             <div class="col-lg-6 px-5 text-end">
@@ -63,7 +62,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
             <a href="index.html" class="navbar-brand ms-4 ms-lg-0">
-                <h1 class="fw-bold text-primary m-0">F<span class="text-secondary">oo</span>dy</h1>
+                <h1 class="fw-bold text-primary m-0">B<span class="text-secondary">G</span>S</h1>
             </a>
             <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse"
                 data-bs-target="#navbarCollapse">
@@ -72,16 +71,16 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
                     <a href="/" class="nav-item nav-link active">Home</a>
-                    <a href="about.html" class="nav-item nav-link">About Us</a>
+                    <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Produk</a>
                         <div class="dropdown-menu m-0">
-                            <a href="/produk" class="dropdown-item">Produk Diskon</a>
-                            <a href="feature.html" class="dropdown-item">Produk Lengkap</a>
+                            <a href="/diskon" class="dropdown-item">Produk Diskon</a>
+                            <a href="/produk" class="dropdown-item">Produk Lengkap</a>
                         </div>
                     </div>
-                    <a href="/produk" class="nav-item nav-link">Products</a>
-                    <div class="nav-item dropdown">
+                    {{-- <a href="/produk" class="nav-item nav-link">Products</a> --}}
+                    {{-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0">
                             <a href="/portofolio" class="dropdown-item">Blog Grid</a>
@@ -89,8 +88,8 @@
                             <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                             <a href="404.html" class="dropdown-item">404 Page</a>
                         </div>
-                    </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+                    </div> --}}
+                    <a href="contact.html" class="nav-item nav-link">Kontak</a>
                 </div>
                 <div class="d-none d-lg-flex ms-2">
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
@@ -201,6 +200,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
 </body>
 
 </html>

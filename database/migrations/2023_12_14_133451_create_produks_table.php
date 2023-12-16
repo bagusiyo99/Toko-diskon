@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('nama_produk');
             $table->decimal('harga_produk', 17, 5);
             $table->string('gambar')->nullable();
+            $table->text('deskripsi');
+            $table->enum('kategori', ['Ruangan', 'Material', 'Dekorasi'])->nullable();
+
             $table->timestamps();
         });
     }

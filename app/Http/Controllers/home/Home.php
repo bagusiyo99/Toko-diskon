@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Barang;
 use App\Models\Blog;
+use App\Models\Diskon;
 use App\Models\Pengaturan;
 use App\Models\Setting;
 
@@ -20,7 +21,7 @@ class Home extends Controller
         'blog' => Blog::paginate(4),
         // 'informasi' => Informasi::paginate(4),
         'banner' => Banner::get(),
-        'barang' => Barang::latest()->take(5)->get(),
+        'diskon' => Diskon::latest()->take(4)->get(),
 
         
 

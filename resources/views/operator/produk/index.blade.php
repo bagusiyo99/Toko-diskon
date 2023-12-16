@@ -12,6 +12,8 @@
                             <tr class="btn-secondary">
                                 <td>No</td>
                                 <td>Nama Barang</td>
+                                <td>Kategori</td>
+
                                 <td>Harga Barang</td>
                                 <td>Gambar</td>
                                 <td>Action</td>
@@ -22,6 +24,8 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->nama_produk }}</td>
+                                    <td>{{ $item->kategori }}</td>
+
                                     <td>{{ formatRupiah($item->harga_produk) }}</td> <!-- Memanggil fungsi formatRupiah -->
                                     </td> <!-- Menampilkan harga setelah diskon -->
                                     </td>
