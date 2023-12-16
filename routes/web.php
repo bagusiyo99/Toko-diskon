@@ -58,9 +58,10 @@ Route::get('/produk/{id}', [HomeProduk::class, 'produk'])->name('furnitur.detail
 Route::get('/diskon', [HomeDiskon::class, 'index'])->name('sale.index');
 Route::get('/diskon/{id}', [HomeDiskon::class, 'diskon'])->name('sale.detail');
 
-Route::get('/produk-lengkap', function () {
+Route::get('/sale/lengkap', function () {
     return view('home.sale.lengkap');
-})->name('produk.lengkap');
+})->name('sale.lengkap');
+
 
 
 

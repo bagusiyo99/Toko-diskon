@@ -75,11 +75,21 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Produk</a>
                         <div class="dropdown-menu m-0">
-                            <a href="/diskon" class="dropdown-item">Produk Diskon</a>
-                            <a href="/produk" class="dropdown-item">Produk Lengkap</a>
+                            <a href="{{ route('sale.index') }}" class="dropdown-item">Produk Diskon</a>
+                            <a href="{{ route('sale.lengkap') }}" class="dropdown-item">Produk Lengkap</a>
                         </div>
                     </div>
 
+                    {{-- <a href="/produk" class="nav-item nav-link">Products</a> --}}
+                    {{-- <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="/portofolio" class="dropdown-item">Blog Grid</a>
+                            <a href="feature.html" class="dropdown-item">Our Features</a>
+                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                            <a href="404.html" class="dropdown-item">404 Page</a>
+                        </div>
+                    </div> --}}
                     <a href="contact.html" class="nav-item nav-link">Kontak</a>
                 </div>
                 <div class="d-none d-lg-flex ms-2">

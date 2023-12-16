@@ -30,20 +30,69 @@
                                         <option value="Ruangan" {{ request('kategori') === 'Ruangan' ? 'selected' : '' }}>
                                             Ruangan</option>
                                         <option value="Material" {{ request('kategori') === 'Material' ? 'selected' : '' }}>
-                                            Material</option>
+                                            Material
+                                        </option>
                                         <option value="Dekorasi" {{ request('kategori') === 'Dekorasi' ? 'selected' : '' }}>
-                                            Dekorasi</option>
+                                            Dekorasi
+                                        </option>
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary mt-2">Cari</button>
                             </div>
                         </div>
                     </form>
-
                 </div>
             </div>
 
             <div class="row g-4">
+                @forelse ($diskon as $item)
+                    @if ($item->diskon > 0)
+                        <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="product-item">
+                                <!-- Isi dengan konten produk -->
+                                <div class="position-relative bg-light overflow-hidden">
+                                    <img class="img-fluid w-100" src="/{{ $item->gambar }}"
+                                        style="height: 300px; object-fit: cover;" alt="">
+                                    <div
+                                        class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                                        Diskon {{ $item->diskon }}%
+                                    </div>
+                                </div>
+                                <div class="text-center p-4">
+                                    <a class="d-block h5 mb-2 text-uppercase"
+                                        href="">{{ Str::limit($item->nama_barang, 40) }}</a>
+                                    <span
+                                        class="text-primary me-1">{{ formatRupiah($item->harga_barang - ($item->harga_barang * $item->diskon) / 100) }}</span>
+                                    <span
+                                        class="text-body text-decoration-line-through">{{ formatRupiah($item->harga_barang) }}</span>
+                                </div>
+                                <div class="d-flex border-top">
+                                    <small class="w-50 text-center border-end py-2">
+                                        <a class="text-body" href=""><i
+                                                class="fa fa-eye text-primary me-2"></i>Detail</a>
+                                    </small>
+                                    <small class="w-50 text-center py-2">
+                                        <a class="text-body" href=""><i
+                                                class="fab fa-whatsapp text-primary me-2"></i>Whatsapp</a>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @empty
+                    <div class="col-12 text-center mt-5">
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                aria-label="Danger:">
+                                <use xlink:href="#exclamation-triangle-fill" />
+                            </svg>
+                            <div>
+                                Tidak ada produk dengan diskon yang ditemukan.
+                            </div>
+                        </div>
+                    </div>
+                @endforelse
+
                 @if ($diskon->isEmpty())
                     <div class="col-12 text-center mt-5">
                         <div class="alert alert-danger d-flex align-items-center" role="alert">
@@ -56,50 +105,8 @@
                             </div>
                         </div>
                     </div>
-                @else
-                    @foreach ($diskon as $item)
-                        <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="product-item">
-                                <div class="position-relative bg-light overflow-hidden">
-                                    <img class="img-fluid w-100" src="/{{ $item->gambar }}"
-                                        style="height: 300px; object-fit: cover;" alt="">
-                                    @if ($item->diskon > 0)
-                                        <div
-                                            class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                            Diskon {{ $item->diskon }}%
-                                        </div>
-                                    @endif
-                                </div>
-                                <div class="text-center p-4">
-                                    <a class="d-block h5 mb-2 text-uppercase"
-                                        href="">{{ Str::limit($item->nama_barang, 40) }}</a>
-                                    @if ($item->diskon > 0)
-                                        <span
-                                            class="text-primary me-1">{{ formatRupiah($item->harga_barang - ($item->harga_barang * $item->diskon) / 100) }}</span>
-                                        <span
-                                            class="text-body text-decoration-line-through">{{ formatRupiah($item->harga_barang) }}</span>
-                                    @else
-                                        <span class="text-primary">{{ formatRupiah($item->harga_barang) }}</span>
-                                    @endif
-                                </div>
-
-                                <div class="d-flex border-top">
-                                    <small class="w-50 text-center border-end py-2">
-                                        <a class="text-body" href="{{ route('sale.detail', $item->id) }}">
-                                            <i class="fa fa-eye text-primary me-2"></i>Detail
-                                        </a>
-                                    </small>
-                                    <small class="w-50 text-center py-2">
-                                        <a class="text-body" href=""><i
-                                                class="fab fa-whatsapp text-primary me-2"></i>Whatsapp</a>
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
                 @endif
             </div>
-
         </div>
     </div>
     <!-- Product End -->
