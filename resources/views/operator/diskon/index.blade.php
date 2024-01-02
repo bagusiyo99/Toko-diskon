@@ -26,13 +26,18 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->nama_barang }}</td>
                                     <td>{{ formatRupiah($item->harga_barang) }}</td> <!-- Memanggil fungsi formatRupiah -->
-                                    <td>{{ $item->diskon }} %</td>
-                                    <td>{{ formatRupiah($item->harga_barang - ($item->harga_barang * $item->diskon) / 100) }}
-                                    </td> <!-- Menampilkan harga setelah diskon -->
-                                    </td>
-                                    <td><span class="badge  {{ $item->status == 'aktif' ? 'bg-primary' : 'bg-danger' }}">
-                                            {{ $item->status }}</span></td>
+                                    @if ($item->diskon > 0 && $item->status == 'aktif')
+                                        <td><span class="badge bg-primary">{{ $item->diskon }} % Diskon</span></td>
+                                        <td>{{ formatRupiah($item->harga_barang - ($item->harga_barang * $item->diskon) / 100) }}
+                                        </td>
+                                    @else
+                                        <td><span class="badge bg-success">Tanpa Diskon</span></td>
 
+                                        <td>{{ formatRupiah($item->harga_barang) }}</td>
+                                    @endif
+                                    <td><span
+                                            class="badge  {{ $item->status == 'aktif' ? 'bg-primary' : 'bg-danger' }}">{{ $item->status }}</span>
+                                    </td>
                                     <td>
                                         @if ($item->gambar)
                                             <img src="/{{ $item->gambar }}" alt="Gambar Barang" width="100">

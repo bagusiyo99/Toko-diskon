@@ -11,8 +11,9 @@
                 <div class="col-lg-6">
                     <div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                         <h1 class="display-5 mb-3">Produk Diskon</h1>
-                        <p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor
-                            duo.</p>
+                        <p>Jelajahi dunia furnitur yang penuh inspirasi! Kunjungi perusahaan kami dan
+                            temukan koleksi lengkap yang akan membawa kehangatan dan keindahan ke setiap ruangan di rumah
+                            Anda.</p>
                     </div>
                 </div>
                 <div class="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
@@ -44,7 +45,7 @@
                 </div>
             </div>
 
-            <div class="row g-4">
+            <div class="row g-4 mt-4">
                 @forelse ($diskon as $item)
                     @if ($item->diskon > 0)
                         <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -72,10 +73,22 @@
                                                 class="fa fa-eye text-primary me-2"></i>Detail</a>
 
                                     </small>
+                                    @php
+                                        $pesan = "Hai, saya tertarik dengan produk {$item->nama_barang} dengan ID {$item->id}.";
+                                        if ($item->diskon > 0) {
+                                            $pesan .= " Produk ini memiliki diskon sebesar {$item->diskon}%. Saya ingin memesannya. Terima kasih!";
+                                        } else {
+                                            $pesan .= ' Saya ingin memesannya. Terima kasih!';
+                                        }
+                                    @endphp
+
                                     <small class="w-50 text-center py-2">
-                                        <a class="text-body" href=""><i
-                                                class="fab fa-whatsapp text-primary me-2"></i>Whatsapp</a>
+                                        <a class="text-body" href="https://wa.me/095959?text={{ urlencode($pesan) }}"
+                                            target="_blank">
+                                            <i class="fab fa-whatsapp text-primary me-2"></i>Whatsapp</a>
                                     </small>
+
+
                                 </div>
                             </div>
                         </div>

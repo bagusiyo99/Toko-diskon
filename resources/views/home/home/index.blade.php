@@ -179,9 +179,19 @@
                                                     class="fa fa-eye text-primary me-2"></i>
                                                 Detail</a>
                                         </small>
+                                        @php
+                                            $pesan = "Hai, saya tertarik dengan produk {$item->nama_barang} dengan ID {$item->id}.";
+                                            if ($item->diskon > 0) {
+                                                $pesan .= " Produk ini memiliki diskon sebesar {$item->diskon}%. Saya ingin memesannya. Terima kasih!";
+                                            } else {
+                                                $pesan .= ' Saya ingin memesannya. Terima kasih!';
+                                            }
+                                        @endphp
+
                                         <small class="w-50 text-center py-2">
-                                            <a class="text-body" href=""><i
-                                                    class="fab fa-whatsapp text-primary me-2"></i>Whatsapp</a>
+                                            <a class="text-body" href="https://wa.me/095959?text={{ urlencode($pesan) }}"
+                                                target="_blank">
+                                                <i class="fab fa-whatsapp text-primary me-2"></i>Whatsapp</a>
                                         </small>
                                     </div>
                                 </div>

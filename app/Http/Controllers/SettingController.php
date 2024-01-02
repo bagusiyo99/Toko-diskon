@@ -39,6 +39,27 @@ class SettingController extends Controller
         $dataSettings['foto'] = Settings()->get('foto');
     }
 
+      // Cek apakah ada file foto yang di-upload
+    if ($request->hasFile('banner')) {
+        $banner = $request->file('banner');
+        $file_name = time() . '-' . $banner->getClientOriginalName();
+
+        $storage = 'uploads/logo/';
+        $banner->move($storage, $file_name);
+        $dataSettings['banner'] = $storage . $file_name;
+
+        // Hapus file banner lama jika ada
+        if (!empty(Settings()->get('banner'))) {
+            $oldFotoPath = Settings()->get('banner');
+            if (file_exists($oldFotoPath)) {
+                unlink($oldFotoPath);
+            }
+        }
+    } else {
+        // Jika tidak ada file foto baru di-upload, gunakan foto lama
+        $dataSettings['foto'] = Settings()->get('foto');
+    }
+
     // Lakukan hal yang sama untuk gambar
     if ($request->hasFile('gambar')) {
         $gambar = $request->file('gambar');

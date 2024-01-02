@@ -150,12 +150,12 @@
                         </a>
                     </li>
 
-                    <li class="menu-item {{ \Route::is('produk.*') ? 'active' : '' }}">
+                    {{-- <li class="menu-item {{ \Route::is('produk.*') ? 'active' : '' }}">
                         <a href="{{ route('produk.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-collection"></i>
                             <div data-i18n="Basic">Data Produk</div>
                         </a>
-                    </li>
+                    </li> --}}
 
 
                     <li class="menu-item {{ \Route::is('pemesanan.*') ? 'active' : '' }}">
@@ -191,7 +191,7 @@
                     <li class="menu-item {{ \Route::is('diskon.*') ? 'active' : '' }}">
                         <a href="{{ route('diskon.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-collection"></i>
-                            <div data-i18n="Basic">Data Diskon</div>
+                            <div data-i18n="Basic">Data Produk</div>
                         </a>
                     </li>
 

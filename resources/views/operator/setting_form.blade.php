@@ -40,6 +40,14 @@
                                 <img src="/{{ settings()->get('foto') }}" width="300px">
                             </div>
 
+                            <div class="mt-3">
+                                <label for="foto">banner 2 (Format: jpg, jpeg, png, Ukuran Maks: 3MB)</label>
+                                <input type="file" name="banner" class="form-control">
+                                @error('banner')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                <img src="/{{ settings()->get('banner') }}" width="300px">
+                            </div>
 
 
 

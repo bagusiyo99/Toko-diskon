@@ -33,6 +33,13 @@
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
+    <style>
+        .navbar-nav .nav-item .nav-link.active {
+            background-color: orange;
+            color: white;
+            /* Ubah warna teks ke putih agar terlihat lebih jelas */
+        }
+    </style>
 
 </head>
 
@@ -70,27 +77,22 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
-                    <a href="/" class="nav-item nav-link active">Home</a>
-                    <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
+                    <a href="/" class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
+                    <a href="/about" class="nav-item nav-link {{ request()->is('about*') ? 'active' : '' }}">Tentang
+                        Kami</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Produk</a>
                         <div class="dropdown-menu m-0">
-                            <a href="{{ route('sale.index') }}" class="dropdown-item">Produk Diskon</a>
-                            <a href="{{ route('sale.lengkap') }}" class="dropdown-item">Produk Lengkap</a>
+                            <a href="{{ route('sale.index') }}"
+                                class="dropdown-item {{ request()->is('produk/diskon*') ? 'active' : '' }}">Produk
+                                Diskon</a>
+                            <a href="{{ route('sale.lengkap') }}"
+                                class="dropdown-item {{ request()->is('produk/lengkap*') ? 'active' : '' }}">Produk
+                                Lengkap</a>
                         </div>
                     </div>
-
-                    {{-- <a href="/produk" class="nav-item nav-link">Products</a> --}}
-                    {{-- <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="/portofolio" class="dropdown-item">Blog Grid</a>
-                            <a href="feature.html" class="dropdown-item">Our Features</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="404.html" class="dropdown-item">404 Page</a>
-                        </div>
-                    </div> --}}
-                    <a href="contact.html" class="nav-item nav-link">Kontak</a>
+                    <a href="/contact"
+                        class="nav-item nav-link {{ request()->is('contact*') ? 'active' : '' }}">Kontak</a>
                 </div>
                 <div class="d-none d-lg-flex ms-2">
                     <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
@@ -104,6 +106,7 @@
                     </a>
                 </div>
             </div>
+
         </nav>
     </div>
     <!-- Navbar End -->
@@ -127,7 +130,7 @@
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <h1 class="fw-bold text-primary mb-4">F<span class="text-secondary">oo</span>dy</h1>
+                    <h1 class="fw-bold text-primary mb-4">B<span class="text-secondary">G</span>S</h1>
                     <p>Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed
                         stet
                         lorem sit clita</p>
