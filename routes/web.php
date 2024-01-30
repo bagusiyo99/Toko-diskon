@@ -52,12 +52,13 @@ Route::get('/jasa', [HomeJasa::class, 'index'])->name('jasa.index');
 Route::get('/jasa/{id}', [HomeJasa::class, 'detail'])->name('jasa.detail');
 
 
-Route::get('/produk', [HomeProduk::class, 'index'])->name('furnitur.index');
-Route::get('/produk/{id}', [HomeProduk::class, 'produk'])->name('furnitur.detail');
+// Route::get('/produk', [HomeProduk::class, 'index'])->name('furnitur.index');
+// Route::get('/produk/{id}', [HomeProduk::class, 'produk'])->name('furnitur.detail');
 
 Route::get('/diskon', [HomeDiskon::class, 'index'])->name('sale.index');
-Route::get('/diskon/detail/{id}', [HomeDiskon::class, 'diskon'])->name('sale.detail');
-Route::get('/diskon/lengkap', [HomeDiskon::class, 'lengkap'])->name('sale.lengkap');
+// Route::get('/produk/detail/{id}', [HomeDiskon::class, 'diskon'])->name('sale.detail');
+Route::get('/produk/lengkap', [HomeDiskon::class, 'lengkap'])->name('sale.lengkap');
+Route::get('/produk/detail', [HomeDiskon::class, 'diskon'])->name('sale.detail');
 
 
 
