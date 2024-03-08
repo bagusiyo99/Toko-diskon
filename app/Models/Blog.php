@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Blog extends Model
 {
@@ -14,5 +15,11 @@ class Blog extends Model
     {
         return $this->hasMany(Komen::class);
     }
+
+       public function getSlugAttribute()
+    {
+        return Str::slug($this->judul); // Pastikan atribut judul tersedia di model Blog
+    }
+
 
 }

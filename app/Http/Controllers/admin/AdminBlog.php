@@ -1,10 +1,11 @@
 <?php
 /// dua komponen jika di buat folder
 namespace App\Http\Controllers\admin;
-use App\Http\Controllers\Controller;
-
 use App\Models\Blog;
+
+use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminBlog extends Controller
@@ -71,7 +72,7 @@ class AdminBlog extends Controller
             $data ['gambar'] = null;
         }
 
-                    Alert::success('sukses', 'data berhasil DITAMBAH');
+                    Flash::success('sukses', 'data berhasil DITAMBAH');
                     Blog::create ($data);
                     return redirect ('/operator/blog');
 
@@ -137,7 +138,7 @@ class AdminBlog extends Controller
             $data ['gambar'] = $blog ->gambar;
         }
 
-                    Alert::success('sukses', 'data berhasil diupdate');
+                    Flash::success('sukses', 'data berhasil diupdate');
                     $blog->update($data);
                     return redirect ('/operator/blog');
 
@@ -157,7 +158,7 @@ class AdminBlog extends Controller
             unlink($blog->gambar);
                 }
 
-        Alert::success('sukses', 'data berhasil dihapus');
+        Flash::success('sukses', 'data berhasil dihapus');
         $blog->delete();
         return redirect ('/operator/blog');
         

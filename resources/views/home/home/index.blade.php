@@ -312,39 +312,27 @@
                     kualitas untuk mempercantik setiap ruang di rumah Anda.</p>
             </div>
             <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <img class="img-fluid" src="img/blog-1.jpg" alt="">
-                    <div class="bg-light p-4">
-                        <a class="d-block h5 lh-base mb-4" href="">How to cultivate organic fruits and
-                            vegetables in own firm</a>
-                        <div class="text-muted border-top pt-4">
-                            <small class="me-3"><i class="fa fa-user text-primary me-2"></i>Admin</small>
-                            <small class="me-3"><i class="fa fa-calendar text-primary me-2"></i>01 Jan, 2045</small>
+                @foreach ($blog as $item)
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="card">
+                            <img class="card-img-top" src="/{{ $item->gambar }}" alt="">
+                            <div class="bg-light p-4">
+                                <a class="d-block h5 lh-base mb-4" href="/blog/{{ $item->id }}">
+                                    {!! Str::limit($item->judul, 40) !!}
+                                </a>
+                                <div class="text-muted border-top pt-4">
+                                    <a class="me-3" href="/blog/{{ $item->id }}">
+                                        <i class="fa fa-eye text-primary me-2"></i>Detail
+                                    </a>
+                                    <small class="me-3">
+                                        <i
+                                            class="fa fa-calendar text-primary me-2"></i>{{ $item->created_at->format('d F Y ') }}
+                                    </small>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <img class="img-fluid" src="img/blog-2.jpg" alt="">
-                    <div class="bg-light p-4">
-                        <a class="d-block h5 lh-base mb-4" href="">How to cultivate organic fruits and
-                            vegetables in own firm</a>
-                        <div class="text-muted border-top pt-4">
-                            <small class="me-3"><i class="fa fa-user text-primary me-2"></i>Admin</small>
-                            <small class="me-3"><i class="fa fa-calendar text-primary me-2"></i>01 Jan, 2045</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <img class="img-fluid" src="img/blog-3.jpg" alt="">
-                    <div class="bg-light p-4">
-                        <a class="d-block h5 lh-base mb-4" href="">How to cultivate organic fruits and
-                            vegetables in own firm</a>
-                        <div class="text-muted border-top pt-4">
-                            <small class="me-3"><i class="fa fa-user text-primary me-2"></i>Admin</small>
-                            <small class="me-3"><i class="fa fa-calendar text-primary me-2"></i>01 Jan, 2045</small>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

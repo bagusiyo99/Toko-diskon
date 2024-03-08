@@ -26,5 +26,7 @@ class AppServiceProvider extends ServiceProvider
 
     //     // Membuat variabel global untuk data "pengaturan"
     //     view()->share('global_pengaturan', $pengaturan);
+            Paginator::useBootstrap();
+
        }
 }

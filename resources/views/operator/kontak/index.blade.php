@@ -5,46 +5,42 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
+
                     @include('flash::message')
 
-                    <table class="table table-bordered text-center" id="data">
-
-                        <a href="/operator/blog/create" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Tambah</a>
+                    <table class="table  table-striped table-bordered table-hover table-bordered text-center" id="data">
                         <thead>
                             <tr class="btn-secondary">
                                 <td> No </td>
-                                <td class="text-center"> Gambar </td>
-                                <td> Judul</td>
-                                {{-- <td width="50px"> Deskripsi </td> --}}
+                                <td> Nama </td>
+                                <td> Email</td>
+                                <td> Deskripsi </td>
                                 <td> Action </td>
                             </tr>
                         </thead>
 
                         <tbody>
-                            @foreach ($blog as $item)
+                            @foreach ($kontak as $item)
                                 <tr>
                                     <td> {{ $loop->iteration }} </td>
-                                    <td><img src="/{{ $item->gambar }}" width="100px" alt=""> </td>
-                                    <td> {{ $item->judul }} </td>
-                                    {{-- <td> {{ $item->desc }} </td> --}}
-
+                                    <td> {{ $item->nama }} </td>
+                                    <td> {{ $item->email }} </td>
+                                    <td> {{ $item->pesan }} </td>
                                     <td>
                                         <div class="text-center mb-1">
-                                            <a href="/operator/blog/{{ $item->id }}/edit "
-                                                class="btn btn-success  mb-2">Edit</a>
+                                            <a href="/operator/kontak/{{ $item->id }}"
+                                                class="btn btn-success  mb-2">Detail</a>
 
-                                            <form action="/operator/blog/{{ $item->id }}" method="POST">
+                                            <form action="/operator/kontak/{{ $item->id }}" method="POST">
                                                 @method ('delete')
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger mx-2">Hapus</button>
-
                                             </form>
                                         </div>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
-
                     </table>
                 </div>
             </div>

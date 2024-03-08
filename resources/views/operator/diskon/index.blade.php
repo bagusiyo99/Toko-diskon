@@ -5,6 +5,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
+                    @include('flash::message')
+
                     <a href="/operator/diskon/create" class="btn btn-primary mb-5"><i class="fas fa-plus"></i> Tambah</a>
 
                     <table class="table table-bordered text-center mt-4" id="data">

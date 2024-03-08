@@ -40,7 +40,30 @@
             /* Ubah warna teks ke putih agar terlihat lebih jelas */
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        /* Gaya untuk card */
+        .card {
+            height: 100%;
+            /* Mengatur tinggi card agar seragam */
+        }
 
+        /* Gaya untuk gambar di dalam card */
+        .card img {
+            height: 100%;
+            /* Mengatur tinggi gambar agar mengisi tinggi card */
+            object-fit: cover;
+            /* Mengatur agar gambar tidak terdistorsi dan menutupi kotak yang diberikan */
+        }
+
+        /* Tambahkan class ini ke gambar agar tingginya seragam */
+        .img-uniform-height {
+            height: 200px;
+            /* Sesuaikan tinggi yang diinginkan */
+            object-fit: cover;
+            /* Mengatur agar gambar tidak terdistorsi dan menutupi kotak yang diberikan */
+        }
+    </style>
 </head>
 
 <body>
@@ -80,6 +103,8 @@
                     <a href="/" class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
                     <a href="/about" class="nav-item nav-link {{ request()->is('about*') ? 'active' : '' }}">Tentang
                         Kami</a>
+                    <a href="/blog" class="nav-item nav-link {{ request()->is('blog*') ? 'active' : '' }}">Artikel
+                    </a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Produk</a>
                         <div class="dropdown-menu m-0">
@@ -91,20 +116,23 @@
                                 Lengkap</a>
                         </div>
                     </div>
-                    <a href="/contact"
-                        class="nav-item nav-link {{ request()->is('contact*') ? 'active' : '' }}">Kontak</a>
+                    <a href="/kontak"
+                        class="nav-item nav-link {{ request()->is('kontak*') ? 'active' : '' }}">Kontak</a>
                 </div>
                 <div class="d-none d-lg-flex ms-2">
-                    <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
-                        <small class="fa fa-search text-body"></small>
-                    </a>
-                    <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
-                        <small class="fa fa-user text-body"></small>
-                    </a>
-                    <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
-                        <small class="fa fa-shopping-bag text-body"></small>
-                    </a>
+
+                    <form action="{{ route('home.blog.search') }}" method="GET" id="search-form"
+                        class="d-flex align-items-center">
+                        <label for="q" class="mb-0 me-2">
+                            <input type="text" name="query" id="q" placeholder="Pencarian...">
+                        </label>
+                        <button class="btn btn-primary" type="submit">Cari</button>
+
+                    </form>
                 </div>
+
+
+
             </div>
 
         </nav>
@@ -204,6 +232,19 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Sembunyikan formulir pencarian saat halaman dimuat
+            $("#search-form").hide();
+
+            // Tambahkan peristiwa klik pada ikon pencarian
+            $(".search-icon").click(function() {
+                // Toggle (menyembunyikan/menampilkan) formulir pencarian
+                $("#search-form").slideToggle();
+            });
+        });
+    </script>
+
 
 </body>
 

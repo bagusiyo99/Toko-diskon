@@ -4,7 +4,11 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
+
                 <div class="card-body">
+
+                    @include('flash::message')
+
                     @if (isset($blog))
                         <form action="/operator/blog/{{ $blog->id }}" method="POST" enctype="multipart/form-data">
                             @method('PUT')
@@ -30,7 +34,7 @@
 
                     <div class="form-group mt-3">
                         <label for="">Deskripsi</label>
-                        <textarea id="tiny" name="deskripsi" class="form-control  " cols="30" rows="10">{{ isset($blog) ? $blog->deskripsi : '' }} </textarea>
+                        <textarea id="textya" name="deskripsi" class="form-control  " cols="30" rows="10">{{ isset($blog) ? $blog->deskripsi : '' }} </textarea>
                         @error('deskripsi')
                             <div class="invalid-feedback">
                                 {{ $message }}

@@ -196,6 +196,12 @@
                     </li>
 
 
+                    <li class="menu-item {{ \Route::is('kontak.*') ? 'active' : '' }}">
+                        <a href="{{ route('kontak.index') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-collection"></i>
+                            <div data-i18n="Basic">Data Kontak</div>
+                        </a>
+                    </li>
 
 
 

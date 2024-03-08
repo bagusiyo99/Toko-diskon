@@ -18,7 +18,7 @@ class Home extends Controller
     function index (){
     $data = [
         'pengaturan' => Pengaturan::get(),
-        'blog' => Blog::paginate(4),
+        'blog' => Blog::paginate(3),
         // 'informasi' => Informasi::paginate(4),
         'banner' => Banner::get(),
         'diskon' => Diskon::where('diskon', '>', 0)->latest()->take(4)->get(),

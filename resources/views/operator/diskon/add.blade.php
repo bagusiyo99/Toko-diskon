@@ -4,6 +4,8 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
+                @include('flash::message')
+
                 <div class="card-body">
                     @if (isset($diskon))
                         <form action="/operator/diskon/{{ $diskon->id }}" method="POST" enctype="multipart/form-data">
@@ -53,7 +55,7 @@
 
                     <div class="form-group mt-3">
                         <label for="">Deskripsi</label>
-                        <textarea id="tiny" name="deskripsi"class="form-control" cols="30" rows="10">{{ isset($diskon) ? $diskon->deskripsi : old('deskripsi') }} </textarea>
+                        <textarea id="textya" name="deskripsi"class="form-control" cols="30" rows="10">{{ isset($diskon) ? $diskon->deskripsi : old('deskripsi') }} </textarea>
                         @error('deskripsi')
                             <div class="invalid-feedback">
                                 {{ $message }}

@@ -1,129 +1,72 @@
-   <div>
-       <img src="/img/sd.jpg" width="100%" class="img-fluid" alt="...">
-   </div>
-   <div class="main-blog mt-5">
+  @extends('layouts.app_home')
+  @section('content')
+      <style>
+          /* Gaya untuk card */
+          .card {
+              height: 100%;
+              /* Mengatur tinggi card agar seragam */
+          }
 
+          /* Gaya untuk gambar di dalam card */
+          .card img {
+              height: 100%;
+              /* Mengatur tinggi gambar agar mengisi tinggi card */
+              object-fit: cover;
+              /* Mengatur agar gambar tidak terdistorsi dan menutupi kotak yang diberikan */
+          }
 
-
-
-
-       <div class="container1 mt-5">
-           <div class="blog-berita">
-               <h2 class="h2">Artikel Kami</h2>
-
-               @if ($blogs->count() > 0)
-                   @foreach ($blogs as $blog)
-                       <div class="blog-card-group">
-                           <div class="blog-card">
-                               <div class="blog-card-banner">
-                                   @if ($blog->gambar)
-                                       <img src="{{ asset($blog->gambar) }}" width="150" class="blog-banner-img">
-                                   @endif
-                               </div>
-                               <div class="blog-content-wrapper">
-                                   <h5 class="blog-tulis">{{ $blog->created_at->format('d F Y ') }}</h5>
-                                   <p class="jdl15">{!! Str::limit($blog->judul, 100) !!}</p>
-                                   <p class="blog-text">{!! Str::limit($blog->deskripsi, 160) !!}</p>
-                                   <a href="/blog/{{ $blog->id }}" class="blog-topic text-tiny">Detail</a>
-                               </div>
-                           </div>
-                       </div>
-                   @endforeach
-                   <div class="d-flex justify-content-center mt-3">
-                       <!-- Add pagination links here if needed -->
-                       {{ $blogs->links() }}
-                   </div>
-               @else
-                   <h2>Hasil Pencarian</h2>
-                   <div class="alert alert-danger" role="alert">
-                       Tidak ada hasil pencarian yang ditemukan.
-                   </div>
-               @endif
-           </div>
-
-
-
-
-
-
-           <div class="aside" data-aos="fade-left" data-aos-offset="500" data-aos-easing="ease-in-sine">
-
-
-               <div class="tags">
-
-                   <h2 class="h2">Tag</h2>
-
-                   <div class="wrapper">
-
-                       <button class="hashtag">Daftar</button>
-                       <button class="hashtag">Vidio</button>
-                       <button class="hashtag">Foto</button>
-
-                       <a href="/foto" class="hashtag">Kegiatan Siswa Siswi</a>
-
-
-                   </div>
-
-               </div>
-
-               <div class="contact">
-
-                   <h2 class="h2">Sosial Media</h2>
-
-                   <div class="wrapper">
-
-                       <p>
-                           Jika Anda ingin mengenal kami lebih jauh dan informasi ter-update, maka ikuti kami di media
-                           sosial
-                       </p>
-
-                       <ul class="social-link">
-
-                           <li>
-                               <a href="#" class="icon-box discord">
-                                   <i class="fa-brands fa-tiktok"></i> </a>
-                           </li>
-
-
-                           <li>
-                               <a href="#" class="icon-box twitter">
-                                   <i class="fa-brands fa-twitter"></i> </a>
-                           </li>
-
-                           <li>
-                               <a href="#" class="icon-box facebook">
-                                   <i class="fa-brands fa-instagram"></i> </a>
-                           </li>
-
-
-
-                       </ul>
-
-                   </div>
-
-               </div>
-
-               <div class="newsletter">
-
-                   <h2 class="h2">Pendaftaran</h2>
-
-                   <div class="wrapper">
-
-                       <p>
-                           Jika Anda ingin mendaftar, maka klik link di bawah ini.
-                       </p>
-
-                       <form action="#">
-
-                           <a href="/pendaftaran" type="submit" class="btn btn-success">Pendaftaran</a>
-                       </form>
-
-                   </div>
-
-               </div>
-
-           </div>
-
-       </div>
-
-   </div>
+          /* Tambahkan class ini ke gambar agar tingginya seragam */
+          .img-uniform-height {
+              height: 200px;
+              /* Sesuaikan tinggi yang diinginkan */
+              object-fit: cover;
+              /* Mengatur agar gambar tidak terdistorsi dan menutupi kotak yang diberikan */
+          }
+      </style>
+      <div>
+          <img src="/{{ settings()->get('foto') }}" width="100%" class="img-fluid" alt="...">
+      </div>
+      <!-- Blog Start -->
+      <div class="container-xxl py-5">
+          <div class="container">
+              <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s"
+                  style="max-width: 500px;">
+                  <h1 class="display-5 mb-3">Informasi Terbaru</h1>
+                  <p>Ini dia berita terkini! Perusahaan kami telah merilis koleksi terbaru furnitur yang menghadirkan desain
+                      inovatif dan tren terkini. Jelajahi pilihan terbaru kami yang menggabungkan fungsionalitas, gaya, dan
+                      kualitas untuk mempercantik setiap ruang di rumah Anda.</p>
+              </div>
+              <div class="row g-4">
+                  @if ($blogs->count() > 0)
+                      @foreach ($blogs as $blog)
+                          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                              <div class="card">
+                                  <img class="card-img-top" src="/{{ $blog->gambar }}" alt="">
+                                  <div class="bg-light p-4">
+                                      <a class="d-block h5 lh-base mb-4"
+                                          href="{{ route('home.blog.detail', ['id' => $blog->id]) }}">{!! Str::limit($blog->judul, 40) !!}</a>
+                                      <div class="text-muted border-top pt-4">
+                                          <a class="me-3" href="{{ route('home.blog.detail', ['id' => $blog->id]) }}">
+                                              <i class="fa fa-eye text-primary me-2"></i>Detail
+                                          </a> <small class="me-3"><i
+                                                  class="fa fa-calendar text-primary me-2"></i>{{ $blog->created_at->format('d F Y ') }}</small>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      @endforeach
+                      <div class="d-flex justify-content-center mt-3">
+                          <!-- Add pagination links here if needed -->
+                          {{ $blogs->links() }}
+                      </div>
+                  @else
+                      <h2>Hasil Pencarian</h2>
+                      <div class="alert alert-danger" role="alert">
+                          Tidak ada hasil pencarian yang ditemukan.
+                      </div>
+                  @endif
+              </div>
+          </div>
+      </div>
+      <!-- Blog End -->
+  @endsection

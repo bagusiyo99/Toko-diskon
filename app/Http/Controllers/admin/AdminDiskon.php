@@ -1,11 +1,11 @@
 <?php
 /// dua komponen jika di buat folder
 namespace App\Http\Controllers\admin;
-use App\Http\Controllers\Controller;
-
 use App\Models\Diskon;
+
+use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class AdminDiskon extends Controller
@@ -99,7 +99,7 @@ class AdminDiskon extends Controller
             'gambar' => $data['gambar'],
         ]);
 
-        Alert::success('Sukses', 'Data berhasil ditambahkan');
+        Flash::success('Sukses, Data berhasil ditambahkan');
 
         return redirect('/operator/diskon');
     }
@@ -188,7 +188,7 @@ class AdminDiskon extends Controller
 
     ]);
 
-    Alert::success('Sukses', 'Data berhasil diupdate');
+    Flash::success('Sukses, Data berhasil diupdate');
 
     return redirect('/operator/diskon');
 }
@@ -200,12 +200,10 @@ class AdminDiskon extends Controller
     {
         $diskon = Diskon::find($id);
 
-        if ($diskon->gambar != null) {
-            unlink($diskon->gambar);
-        }
+    
 
-        Alert::success('Sukses', 'Data berhasil dihapus');
         $diskon->delete();
+        Flash::success('Sukses, Data berhasil dihapus');
 
         return redirect('/operator/diskon');
     }

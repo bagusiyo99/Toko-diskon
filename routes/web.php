@@ -8,26 +8,29 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\home\HomeJasa;
 use App\Http\Controllers\admin\AdminBlog;
 use App\Http\Controllers\admin\AdminJasa;
+use App\Http\Controllers\home\HomeDiskon;
+
+
+
+use App\Http\Controllers\home\HomeProduk;
 use App\Http\Controllers\admin\AdminKomen;
-
-
-
+use App\Http\Controllers\home\HomeContact;
 use App\Http\Controllers\admin\AdminBanner;
 use App\Http\Controllers\admin\AdminBarang;
 use App\Http\Controllers\Admin\AdminDiskon;
+use App\Http\Controllers\admin\AdminKontak;
+use App\Http\Controllers\Admin\AdminProduk;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\home\HomePemesanan;
 use App\Http\Controllers\home\HomePortofolio;
 use App\Http\Controllers\admin\AdminPemesanan;
+use App\Http\Controllers\admin\AdminTransaksi;
 use App\Http\Controllers\home\komenController;
 use App\Http\Controllers\admin\AdminPengaturan;
 use App\Http\Controllers\admin\AdminPortofolio;
-use App\Http\Controllers\Admin\AdminProduk;
-use App\Http\Controllers\admin\AdminTransaksi;
 use App\Http\Controllers\home\HomeBlogController;
 use App\Http\Controllers\admin\BerandaOperatorController;
-use App\Http\Controllers\home\HomeDiskon;
-use App\Http\Controllers\home\HomeProduk;
-use App\Http\Controllers\SettingController;
+use App\Http\Controllers\home\HomeKontak;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,9 +59,8 @@ Route::get('/jasa/{id}', [HomeJasa::class, 'detail'])->name('jasa.detail');
 // Route::get('/produk/{id}', [HomeProduk::class, 'produk'])->name('furnitur.detail');
 
 Route::get('/diskon', [HomeDiskon::class, 'index'])->name('sale.index');
-// Route::get('/produk/detail/{id}', [HomeDiskon::class, 'diskon'])->name('sale.detail');
 Route::get('/produk/lengkap', [HomeDiskon::class, 'lengkap'])->name('sale.lengkap');
-Route::get('/produk/detail', [HomeDiskon::class, 'diskon'])->name('sale.detail');
+Route::get('/produk/detail/{id}', [HomeDiskon::class, 'diskon'])->name('sale.detail');
 
 
 
@@ -67,15 +69,18 @@ Route::get('/produk/detail', [HomeDiskon::class, 'diskon'])->name('sale.detail')
 
 
 
-Route::get('/pemesanan', [HomePemesanan::class, 'index'])->name('pemesanan.index');
-Route::post('/pemesanan/send', [HomePemesanan::class, 'send'])->name('pemesanan.send');
+// Route::get('/pemesanan', [HomePemesanan::class, 'index'])->name('pemesanan.index');
+// Route::post('/pemesanan/send', [HomePemesanan::class, 'send'])->name('pemesanan.send');
 
 
-
-Route::get('/blog', [HomeBlogController::class, 'blog'])->name('blog.index');
-Route::get('/blog/{id}', [HomeBlogController::class, 'detailBlog'])->name('blog.detail');
+// komentar blog atau artikel
+Route::get('/blog', [HomeBlogController::class, 'blog'])->name('home.blog.index');
+// Route to display a specific blog post and its comments
+Route::get('/blog/{id}', [HomeBlogController::class, 'detailBlog'])->name('home.blog.detail');
+// Rute untuk menampilkan formulir input komentar
 Route::get('/komentar', [KomenController::class, 'comen'])->name('komentar.comen');
-Route::get('/search', [HomeBlogController::class, 'search'])->name('blog.search');
+Route::get('/search', [HomeBlogController::class, 'search'])->name('home.blog.search');
+
 
 // Rute untuk menyimpan komentar
 Route::post('/komentar/send', [KomenController::class, 'send'])->name('komentar.send')->middleware('web');
@@ -107,17 +112,14 @@ Route::get('/alamat', function () {
     $data = [
         'content'=> 'home/alamat/index'
     ];
-    return view('home.layouts.wrapper',$data);
+    return view('home.layouts');
 });
 
-Route::get('/prosedur', function () {
-    $data = [
-        'content'=> 'home/prosedur/index'
-    ];
-    return view('home.layouts.wrapper',$data);
+Route::get('/alamat', function () {
+ return redirect();
 });
+// Route::view('/alamat', 'home.alamat.index');
 
-   
 
 Route::get('/home', function () {
  return redirect();
@@ -126,6 +128,8 @@ Route::get('/home', function () {
 Auth::routes();
 
 
+Route::get('/kontak', [HomeKontak::class, 'index'])->name('home.kontak.index');
+Route::post('/kontak/send', [HomeKontak::class, 'send'])->name('home.kontak.send');
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -148,6 +152,7 @@ Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function
     Route::resource('/blog', AdminBlog::class);
     Route::resource('/produk', AdminProduk::class);
     Route::resource('/diskon', AdminDiskon::class);
+    Route::resource('/kontak', AdminKontak::class);
 
 
     Route::resource('/portofolio', AdminPortofolio::class);

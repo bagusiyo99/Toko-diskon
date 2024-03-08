@@ -13,13 +13,14 @@ class HomeBlogController extends Controller
 {
 public function blog()
 {
- $blogs = Blog::latest()->paginate(4); // Mengambil 4 blog per halaman
+ $blogs = Blog::latest()->paginate(6); // Mengambil 4 blog per halaman
     $data = [
         'blogs' => $blogs,
         'content' => 'home/blog/index'
     ];
 
-    return view('home.layouts.wrapper', $data);
+    return view('home.blog.index', $data);
+
 }
 
 
@@ -42,7 +43,7 @@ public function detailBlog($id)
         'content' => 'home/blog/detail'
     ];
 
-    return view('home.layouts.wrapper', $data);
+    return view('home.blog.detail', $data);
 }
 
 public function index()
@@ -54,7 +55,7 @@ public function index()
         'content' => 'home/blog/detail'
     ];
 
-    return view('home.layouts.wrapper', $data);
+    return view('home.blog.index', $data);
 }
 
 public function search(Request $request)
@@ -69,6 +70,6 @@ public function search(Request $request)
         'content' => 'home/blog/index', // Ganti dengan tampilan beranda Anda yang sesuai
     ];
 
-    return view('home.layouts.wrapper', $data);
+    return view('home.blog.index', $data);
 }
 }
